@@ -58,6 +58,7 @@ public class CartController {
 		return "/cart";
 	}
 	
+	// カートログイン
 	@GetMapping({"/cart/login", "/cart/logout"})
 	public String index() {
 		session.invalidate();
@@ -73,5 +74,4 @@ public class CartController {
 		// 画面遷移
 		return "cart";
 	}
-	
 }
