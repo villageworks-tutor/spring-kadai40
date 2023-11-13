@@ -10,16 +10,18 @@
 		<input type="text" name="name" placeholder="商品名" />
 		<input type="text" name="price" placeholder="価格" />
 		<button>カートに追加</button>
-	</form>
-	<table border="1">
-		<tr>
-			<th>商品名</th>
-			<th>価格</th>
-		</tr>
-		<tr>
-			<td>[[${item.name}]]</td>
-			<td>[[${item.price}]]</td>
-		</tr>
-	</table>
+	</form><br />
+	<th:block th:if="${@cart.itemList.size()}">
+		<table border="1">
+			<tr>
+				<th>商品名</th>
+				<th>価格</th>
+			</tr>
+			<tr th:each="item : ${@cart.itemList}">
+				<td>[[${item.name}]]</td>
+				<td>[[${item.price}]]</td>
+			</tr>
+		</table>
+	</th:block>
 </body>
 </html>
