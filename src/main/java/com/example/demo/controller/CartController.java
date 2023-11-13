@@ -69,8 +69,9 @@ public class CartController {
 	public String login(
 			@RequestParam("name") String name,
 			Model model) {
-		// リクエストパラメータをセッションに登録
+		// リクエストパラメータをセッションスコープに登録されているアカウント情報に設定
 		account.setName(name);
+		// 画面遷移
 		return "cart";
 	}
 }
