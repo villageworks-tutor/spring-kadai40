@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.model.Account;
 import com.example.demo.model.Cart;
 import com.example.demo.model.Item;
 
@@ -22,6 +23,9 @@ public class CartController {
 	
 	@Autowired
 	Cart cart;
+	
+	@Autowired
+	Account account;
 	
 	// 初期表示
 	@GetMapping("/cart")
@@ -52,6 +56,22 @@ public class CartController {
 	public String clearCart() {
 		cart.getItemList().clear(); // TODO: Cartにclearメソッドを追加しても構わない
 		return "/cart";
+	}
+	
+	@GetMapping({"/cart/login", "/cart/logout"})
+	public String index() {
+		session.invalidate();
+		return "cartLogin";
+	}
+	
+	@PostMapping("/cart/login")
+	public String login(
+			@RequestParam("name") String name,
+			Model model) {
+		// リクエストパラメータをセッションスコープに登録されているアカウント情報に設定
+		account.setName(name);
+		// 画面遷移
+		return "cart";
 	}
 	
 }
