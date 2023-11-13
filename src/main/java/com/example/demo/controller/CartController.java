@@ -46,4 +46,12 @@ public class CartController {
 		// 画面遷移
 		return "cart";
 	}
+	
+	// 全商品削除処理
+	@GetMapping("/cart/clear")
+	public String clearCart() {
+		cart.getItemList().clear(); // TODO: Cartにclearメソッドを追加しても構わない
+		return "/cart";
+	}
+	
 }
